@@ -16,4 +16,14 @@ let days = [
 ];
 let Day = days[now.getDay()];
 
-h6.innerHTML = `${Day} ${Hours}:${Minutes}`;
+h6.innerHTML = `${Day}, ${Hours}:${Minutes}`;
+
+function search(event) {
+  event.preventDefault();
+  let cityElement = document.querySelector("h1");
+  let cityInput = document.querySelector("#password-input");
+  cityElement.innerHTML = cityInput.value;
+}
+
+let searchForm = document.querySelector("#search-input");
+searchForm = addEventListener("submit", search);
