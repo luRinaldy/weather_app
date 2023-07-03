@@ -18,12 +18,41 @@ let Day = days[now.getDay()];
 
 h6.innerHTML = `${Day}, ${Hours}:${Minutes}`;
 
-function search(event) {
-  event.preventDefault();
-  let cityElement = document.querySelector("h1");
-  let cityInput = document.querySelector("#password-input");
-  cityElement.innerHTML = cityInput.value;
+function showTemperature(response) {
+  console.log(response.data);
+
+  document.querySelector("h1").innerHTML = response.data.name;
+
+  let temperatureElement = document.querySelector("#temperature");
+  let weatherElement = document.querySelector("h2");
+  let feelingElement = document.querySelector("#feels_like");
+  let windElement = document.querySelector("#wind");
+  let humidityElement = document.querySelector("#humidity");
+  let rangeElement = document.querySelector("#range");
+  let descriptionElement = document.querySelector("#description");
+
+  temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°C`;
+  weatherElement.innerHTML = response.data.weather[0].main;
+  feelingElement.innerHTML = `Feels like ${Math.round(
+    response.data.main.feels_like
+  )}°C`;
+  windElement.innerHTML = `Wind ${Math.round(response.data.wind.speed)} mph`;
+  humidityElement.innerHTML = `Humidity ${Math.round(
+    response.data.main.humidity
+  )}%`;
+  rangeElement.innerHTML = `Max: ${Math.round(
+    response.data.main.temp_max
+  )}°C Min: ${Math.round(response.data.main.temp_min)}°C`;
+  descriptionElement.innerHTML = response.data.weather[0].description;
 }
 
-let searchForm = document.querySelector("#search-input");
+function search(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#password-input").value;
+  let apiKey = "269571f676769f38d9fadcded075ba32";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+let searchForm = document.querySelector("#password-form");
 searchForm = addEventListener("submit", search);
