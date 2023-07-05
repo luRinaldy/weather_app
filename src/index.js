@@ -54,5 +54,7 @@ function search(event) {
   axios.get(apiUrl).then(showTemperature);
 }
 
+let footerElement = document.querySelector("#footer");
+
 let searchForm = document.querySelector("#password-form");
 searchForm = addEventListener("submit", search);
