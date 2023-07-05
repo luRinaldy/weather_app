@@ -30,20 +30,25 @@ function showTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   let rangeElement = document.querySelector("#range");
   let descriptionElement = document.querySelector("#description");
+  let iconElement = document.querySelector("#icon");
 
   temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°C`;
   weatherElement.innerHTML = response.data.weather[0].main;
-  feelingElement.innerHTML = `Feels like ${Math.round(
+  feelingElement.innerHTML = `Feels like: ${Math.round(
     response.data.main.feels_like
   )}°C`;
-  windElement.innerHTML = `Wind ${Math.round(response.data.wind.speed)} mph`;
-  humidityElement.innerHTML = `Humidity ${Math.round(
+  windElement.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  humidityElement.innerHTML = `Humidity: ${Math.round(
     response.data.main.humidity
   )}%`;
   rangeElement.innerHTML = `Max: ${Math.round(
     response.data.main.temp_max
   )}°C Min: ${Math.round(response.data.main.temp_min)}°C`;
   descriptionElement.innerHTML = response.data.weather[0].description;
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function search(event) {
