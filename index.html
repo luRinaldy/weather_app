@@ -16,12 +16,13 @@
 
   <body>
     <div class="container">
-      <form id="password-form" onsubmit="event.preventDefault();" role="search">
+      <form id="password-form" role="search">
         <input
           id="password-input"
           type="search"
           placeholder="Enter your city..."
-          autofocus
+          autofocusn
+          j
           required
         />
         <button type="submit" value="Search">Search</button>
@@ -50,7 +51,13 @@
                     <img class="weather-icon" id="icon" alt="weather-icon" />
                   </li>
                   <li>
-                    <span class="current-weather" id="temperature"></span>
+                    <span class="current-weather">
+                      <strong id="temperature"></strong>
+                      <small class="units"
+                        ><a id="celsius-link" href="#">°C</a> |
+                        <a id="fahrenheit-link" href="#">°F</a>
+                      </small>
+                    </span>
                   </li>
                   <li id="description"></li>
                   <li id="range"></li>

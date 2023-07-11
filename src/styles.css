@@ -87,3 +87,24 @@ li {
   width: 80px;
   height: 80px;
 }
+
+.units {
+  font-size: 15px;
+  position: absolute;
+  color: #f7f7f7;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.units a {
+  color: white;
+  text-align: center;
+}
+
+#temperature {
+  font-weight: 500;
+}
+
+#celsius-link {
+  text-align: left;
+}

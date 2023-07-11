@@ -32,7 +32,9 @@ function showTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let iconElement = document.querySelector("#icon");
 
-  temperatureElement.innerHTML = `${Math.round(response.data.main.temp)}°C`;
+  celsiusELement = Math.round(response.data.main.temp);
+
+  temperatureElement.innerHTML = celsiusELement;
   weatherElement.innerHTML = response.data.weather[0].main;
   feelingElement.innerHTML = `Feels like: ${Math.round(
     response.data.main.feels_like
@@ -59,7 +61,25 @@ function search(event) {
   axios.get(apiUrl).then(showTemperature);
 }
 
+function fahrenheitUnits() {
+  fahrenheitTemper = (celsiusELement * 9) / 5 + 32;
+  let temperElement = document.querySelector("#temperature");
+  temperElement.innerHTML = Math.round(fahrenheitTemper);
+}
+
+function celsiusUnits() {
+  let temperElement = document.querySelector("#temperature");
+  temperElement.innerHTML = "26";
+}
+
 let footerElement = document.querySelector("#footer");
+let celsiusELement = null;
 
 let searchForm = document.querySelector("#password-form");
 searchForm = addEventListener("submit", search);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink = addEventListener("click", celsiusUnits);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink = addEventListener("click", fahrenheitUnits);
